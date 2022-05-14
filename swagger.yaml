@@ -1,0 +1,134 @@
+tags:
+- name: developers
+  description: developers API
+
+paths:
+# [GET] developers
+  /developers:
+    get:
+      tags:
+      - developers
+      summary: Find All Developers
+      responses:
+        200:
+          description: 'OK'
+        500:
+          description: 'Server Error'
+
+# [POST] developers
+    post:
+      tags:
+      - developers
+      summary: Add Developer
+      parameters:
+      - name: body
+        in: body
+        description: developer Data
+        required: true
+        schema:
+          $ref: '#/definitions/developers'
+      responses:
+        201:
+          description: 'Created'
+        400:
+          description: 'Bad Request'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+# [GET] developers/id
+  /developers/{id}:
+    get:
+      tags:
+      - developers
+      summary: Find Developer By Id
+      parameters:
+      - name: id
+        in: path
+        description: Developer Id
+        required: true
+        type: string
+      responses:
+        200:
+          description: 'OK'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+# [PUT] developers/id
+    put:
+      tags:
+      - developers
+      summary: Update Developer By Id
+      parameters:
+      - name: id
+        in: path
+        description: Developer Id
+        required: true
+        type: string
+      - name: body
+        in: body
+        description: Developer Data
+        required: true
+        schema:
+          $ref: '#/definitions/developers'
+      responses:
+        200:
+          description: 'OK'
+        400:
+          description: 'Bad Request'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+# [DELETE] developers/id
+    delete:
+      tags:
+      - developers
+      summary: Delete Developer By Id
+      parameters:
+      - name: id
+        in: path
+        description: Developer Id
+        required: true
+        type: string
+      responses:
+        200:
+          description: 'OK'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+# definitions
+definitions:
+  developers:
+    type: object
+    required:
+        - name
+        - hobby
+        - sex
+        - age
+        - birthdate
+    properties:
+      name:
+        type: string
+        description: Developer Name
+      hobby:
+        type: string
+        description: Developer hobby
+      age:
+        type: integer
+        description: Developer Age
+      birthdate:
+        type: date
+        description: Developer Birthdate
+      sex:
+        type: enum
+        description: Developer Sex
+schemes:
+ - https
+ - http

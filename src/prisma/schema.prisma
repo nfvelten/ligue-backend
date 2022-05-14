@@ -1,0 +1,25 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+datasource db {
+  provider = "postgres"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+enum Sex {
+  M
+  F
+}
+
+model Developer {
+  id        String    @id @default(uuid())
+  name      String
+  sex       Sex
+  age       Int
+  hobby     String
+  birthdate DateTime?
+}

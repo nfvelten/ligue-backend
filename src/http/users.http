@@ -1,0 +1,40 @@
+# baseURL
+@baseURL = http://localhost:3000
+
+###
+# Find All Developers
+GET {{ baseURL }}/developers
+
+###
+# Find Developer By Id
+GET {{ baseURL }}/developers/08458604-dc1b-43d5-88a4-55ea4291c5e0
+
+###
+# Create Developer
+POST {{ baseURL }}/developers
+Content-Type: application/json
+
+{
+  "name": "Albert"
+  "sex": "M"
+  "age": "20"
+  "hobby": "play videogames"
+  "birthdate": "00/00/0000"
+}
+
+###
+# Modify Developer By Id
+PUT {{ baseURL }}/developers/08458604-dc1b-43d5-88a4-55ea4291c5e0
+Content-Type: application/json
+
+{
+  "name": "Albert"
+  "sex": "M"
+  "age": 20
+  "hobby": "play videogames"
+  "birthdate": "00/00/0000"
+}
+
+###
+# Delete Developer By Id
+DELETE {{ baseURL }}/developers/08458604-dc1b-43d5-88a4-55ea4291c5e0

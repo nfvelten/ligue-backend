@@ -11,11 +11,17 @@ class DeveloperService {
     return allDevelopers;
   }
 
+  public async filterDevelopers(filter): Promise<Developer[]> {
+    console.log(filter.skip);
+    const filteredUsers: Developer[] = await this.developers.findMany({ where: filter });
+    return filteredUsers;
+  }
+
   public async findDeveloperById(developerId: string): Promise<Developer> {
-    if (isEmpty(developerId)) throw new HttpException(400, "You're not developerId");
+    if (isEmpty(developerId)) throw new HttpException(400, 'wrong id');
 
     const findDeveloper: Developer = await this.developers.findUnique({ where: { id: developerId } });
-    if (!findDeveloper) throw new HttpException(409, "You're not developer");
+    if (!findDeveloper) throw new HttpException(409, 'developer not found');
 
     return findDeveloper;
   }

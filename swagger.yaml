@@ -15,6 +15,18 @@ paths:
         500:
           description: 'Server Error'
 
+# [GET] developers/filter?
+  /developers/filter?:
+    get:
+      tags:
+      - developers
+      summary: Filter All Developers
+      responses:
+        200:
+          description: 'OK'
+        500:
+          description: 'Server Error'
+
 # [POST] developers
     post:
       tags:

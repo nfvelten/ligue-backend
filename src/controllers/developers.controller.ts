@@ -16,6 +16,16 @@ class DevelopersController {
     }
   };
 
+  public filterDevelopers = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+    try {
+      const filter = req.query;
+      const filterDevelopers: Developer[] = await this.developerService.filterDevelopers(filter);
+      res.status(200).json({ data: filterDevelopers });
+    } catch (error) {
+      next(error);
+    }
+  };
+
   public getDeveloperById = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
     try {
       const developerId = String(req.params.id);
@@ -62,4 +72,4 @@ class DevelopersController {
   };
 }
 
-export default DevelopersController;
+export { DevelopersController };

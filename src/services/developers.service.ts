@@ -54,4 +54,4 @@ class DeveloperService {
   }
 }
 
-export default DeveloperService;
+export { DeveloperService };

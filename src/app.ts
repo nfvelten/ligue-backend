@@ -7,7 +7,7 @@ import hpp from 'hpp';
 import morgan from 'morgan';
 import swaggerJSDoc from 'swagger-jsdoc';
 import swaggerUi from 'swagger-ui-express';
-import { NODE_ENV, PORT, LOG_FORMAT, ORIGIN, CREDENTIALS } from '@config';
+import { NODE_ENV, PORT, LOG_FORMAT } from '@config';
 import { Routes } from '@interfaces/routes.interface';
 import errorMiddleware from '@middlewares/error.middleware';
 import { queryParser } from 'express-query-parser';
@@ -42,9 +42,15 @@ class App {
     return this.app;
   }
 
+  allowedOrigins = ['http://localhost:3001'];
+
+  options: cors.CorsOptions = {
+    origin: this.allowedOrigins,
+  };
+
   private initializeMiddlewares() {
     this.app.use(morgan(LOG_FORMAT));
-    this.app.use(cors({ origin: ORIGIN, credentials: CREDENTIALS }));
+    this.app.use(cors(this.options));
     this.app.use(hpp());
     this.app.use(helmet());
     this.app.use(compression());
@@ -88,4 +94,4 @@ class App {
   }
 }
 
-export default App;
+export { App };
